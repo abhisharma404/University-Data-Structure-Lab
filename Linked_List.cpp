@@ -34,6 +34,33 @@ void createLL(int x){
     }
 
 }
+void insertBeg(int x){
+
+    cout<<"\nInserting at the begining...";
+    Node *n = new Node;
+    n->data = x;
+    temp = head;
+    head = n;
+    n->next = temp;
+
+}
+void insertPos(int x, int ele){
+
+    cout<<"Inserting element "<<ele<<" at position "<<x;
+    Node *fwd;
+    temp = head;
+
+    for(int i=1;i<x-1;i++){
+        temp = temp->next;
+    };
+
+    Node *n = new Node;
+    n->data = ele;
+    fwd = temp->next;
+    temp->next = n;
+    n->next = fwd;
+
+}
 
 void printLL(){
 
@@ -106,11 +133,16 @@ int main(){
     cout<<"\nEnter the length of the linked list...";
     cin>>n;
     createLL(n);
+    insertPos(2, 100);
+    printLL();
     printLL();
     deleteBeg();
     printLL();
     deleteEnd();
     printLL();
     searchLL(4);
+    insertBeg(99);
+    printLL();
+
     return 0;
 }
