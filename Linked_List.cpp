@@ -30,7 +30,7 @@ void createLL(int x){
         cin>>ele;
         n->data = ele;
         temp->next = n;
-        temp = n;
+        temp = temp->next;
     }
 
 }
@@ -75,6 +75,18 @@ void printLL(){
     cout<<"\nList traversed and printed...";
 }
 
+void mergeLL(Node* h1, Node* h2){
+
+    //Merging two lists
+    cout<<"\nMerging two lists together...";
+    Node* temp;
+    temp = h1;
+    while(temp->next!=NULL){
+        temp = temp->next;
+    }
+    temp->next = h2;
+}
+
 void deleteBeg(){
 
     cout<<"\n\nDeleting from the begining\n";
@@ -96,6 +108,17 @@ void deleteEnd(){
         temp = temp->next;
     }
     previous->next = NULL;
+    free(temp);
+}
+void deletePos(int x){
+
+    temp = head;
+    Node *fwd = new Node;
+    for(int i=1;i<x-1;i++){
+        temp = temp->next;
+    }
+    fwd = temp->next;
+    temp->next = fwd->next;
     free(temp);
 }
 void searchLL(int x){
@@ -135,6 +158,8 @@ int main(){
     createLL(n);
     insertPos(2, 100);
     printLL();
+    deletePos(2);
+    printLL();
     printLL();
     deleteBeg();
     printLL();
@@ -143,6 +168,5 @@ int main(){
     searchLL(4);
     insertBeg(99);
     printLL();
-
-    return 0;
+   return 0;
 }
